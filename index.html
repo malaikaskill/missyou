@@ -1,197 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malaika</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-dark: #0d0c0c;
-            --text-main: #f0f0f0;
-            --accent: #d4d4d4;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miss You</title>
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            margin: 0;
-            padding: 0;
-        }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,500&family=Poppins:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
 
-        .serif {
-            font-family: 'Bodoni Moda', serif;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .vignette {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.9) 100%);
-            pointer-events: none;
-            z-index: 10;
-        }
+    body {
+      height: 100vh;
+      background: radial-gradient(circle at top, #2b1055, #120018);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      color: #fff;
+    }
 
-        .particle {
-            position: fixed;
-            background: white;
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0.3;
-            z-index: 1;
-        }
+    .container {
+      text-align: center;
+      max-width: 900px;
+      padding: 40px;
+    }
 
-        .char {
-            display: inline-block;
-            opacity: 0;
-            filter: blur(8px);
-        }
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 4.5rem;
+      color: #ffb7d5;
+      margin-bottom: 20px;
+      animation: fadeSlide 2s ease forwards;
+    }
 
-        .glow-text {
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-        }
+    p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      line-height: 1.8;
+      color: #f3e9ff;
+      opacity: 0;
+      animation: fadeUp 2s ease forwards;
+      animation-delay: 1.5s;
+    }
 
-        .scroll-indicator {
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            font-size: 0.65rem;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            z-index: 20;
-        }
-    </style>
+    .signature {
+      margin-top: 40px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      color: #ffd1e8;
+      opacity: 0;
+      animation: fadeUp 2s ease forwards;
+      animation-delay: 3s;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      width: 18px;
+      height: 18px;
+      background: #ff6fa1;
+      transform: rotate(45deg);
+      animation: float 8s linear infinite;
+      opacity: 0.7;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: #ff6fa1;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -9px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -9px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 0;
+      }
+      20% { opacity: 0.7; }
+      100% {
+        transform: translateY(-110vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="vignette"></div>
-    <div id="particles-container"></div>
+  <div class="container">
+    <h1>I Miss You</h1>
+    <p>
+      Every second without you feels like a soft ache in my heart.
+      I carry your smile in my thoughts and your warmth in my soul.
+      Distance may keep us apart, but love always finds its way.
+    </p>
+    <div class="signature">— Always Yours</div>
+  </div>
 
-    <main class="relative z-10 min-h-screen px-6 py-24 md:px-12 lg:px-24 max-w-4xl mx-auto flex flex-col justify-center">
-        
-        <!-- Header -->
-        <div class="mb-20 overflow-hidden">
-            <h1 id="title" class="serif text-4xl md:text-6xl italic font-light tracking-tight glow-text">
-                I miss you, Malaika.
-            </h1>
-        </div>
+  <!-- Hearts -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (6 + Math.random() * 6) + 's';
+      document.body.appendChild(heart);
 
-        <!-- Content -->
-        <div class="space-y-12 text-lg md:text-xl leading-relaxed font-light text-neutral-400">
-            <p class="content-para opacity-0">
-                You entered me without permission and stayed without promise. No touch, no questions—just a quiet taking of space I didn’t know could be taken. I never paused to wonder who you are to the world or whether you would remain in mine. The moment you existed, everything else went silent.
-            </p>
+      setTimeout(() => {
+        heart.remove();
+      }, 12000);
+    }
 
-            <p class="content-para opacity-0">
-                Your words don’t reach me—they undo me. Time collapses when I think of you; seconds lose their meaning. I live in the echo of you, in the spaces between breaths, carrying you like something sacred and unbearable. 
-            </p>
+    setInterval(createHeart, 500);
+  </script>
 
-            <p class="content-para opacity-0 font-normal text-neutral-200">
-                Every thought returns to you. <span class="serif italic text-2xl md:text-3xl block mt-6 text-white glow-text">Always you.</span>
-            </p>
-        </div>
-
-    </main>
-
-    <div id="scrollHint" class="scroll-indicator">
-        Infinite Echo
-    </div>
-
-    <script>
-        window.onload = () => {
-            // Split title into characters for romantic reveal
-            const titleEl = document.getElementById('title');
-            const text = titleEl.innerText;
-            titleEl.innerHTML = text.split('').map(char => `<span class="char">${char === ' ' ? '&nbsp;' : char}</span>`).join('');
-
-            const tl = gsap.timeline({ defaults: { ease: "sine.inOut" } });
-
-            // Create particles
-            const container = document.getElementById('particles-container');
-            for (let i = 0; i < 40; i++) {
-                const p = document.createElement('div');
-                p.className = 'particle';
-                const size = Math.random() * 3 + 1;
-                p.style.width = `${size}px`;
-                p.style.height = `${size}px`;
-                p.style.left = `${Math.random() * 100}%`;
-                p.style.top = `${Math.random() * 100}%`;
-                container.appendChild(p);
-                
-                gsap.to(p, {
-                    y: `+=${Math.random() * 100 - 50}`,
-                    x: `+=${Math.random() * 100 - 50}`,
-                    opacity: Math.random() * 0.5,
-                    duration: 5 + Math.random() * 5,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut"
-                });
-            }
-
-            // Title Reveal: Character by Character with Blur
-            tl.to(".char", {
-                opacity: 1,
-                filter: "blur(0px)",
-                stagger: 0.08,
-                duration: 2.5,
-                ease: "power2.inOut"
-            });
-
-            // Sequential paragraph reveal with soft drift
-            tl.to(".content-para", {
-                opacity: 1,
-                y: -10,
-                duration: 3,
-                stagger: 1.2,
-                filter: "blur(0px)"
-            }, "-=1.5");
-
-            // Final touch
-            tl.to("#scrollHint", {
-                opacity: 0.6,
-                duration: 3
-            }, "-=1");
-
-            gsap.to("#scrollHint", {
-                letterSpacing: "0.6em",
-                duration: 4,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut"
-            });
-
-            // Parallax movement for a dreamy feel
-            document.addEventListener('mousemove', (e) => {
-                const moveX = (e.clientX / window.innerWidth - 0.5) * 30;
-                const moveY = (e.clientY / window.innerHeight - 0.5) * 30;
-                
-                gsap.to("main", {
-                    x: moveX,
-                    y: moveY,
-                    duration: 3,
-                    ease: "power1.out"
-                });
-
-                gsap.to(".particle", {
-                    x: (i) => moveX * (i % 5),
-                    y: (i) => moveY * (i % 5),
-                    duration: 4,
-                    ease: "power1.out"
-                });
-            });
-        };
-    </script>
 </body>
 </html>
